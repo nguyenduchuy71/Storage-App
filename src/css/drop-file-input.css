@@ -1,0 +1,70 @@
+.drop-file-input {
+  position: relative;
+  width: 100%;
+  height: 200px;
+  border: 2px dashed var(--border-color);
+  border-radius: 20px;
+  margin-bottom: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  background-color: var(--input-bg);
+}
+
+.drop-file-input input {
+  opacity: 0;
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
+}
+
+.drop-file-input:hover,
+.drop-file-input.dragover {
+  opacity: 0.6;
+}
+
+.drop-file-input__label {
+  text-align: center;
+  font-size: 14px;
+  color: #111;
+  font-weight: 700;
+  padding: 10px;
+}
+
+.drop-file-input__label img {
+  width: 120px;
+  border-radius: 8px;
+}
+
+.drop-file-preview__item {
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+}
+
+.drop-file-preview__item img {
+  width: 32px;
+  height: 32px;
+  object-fit: contain;
+  margin-right: 10px;
+}
+
+.drop-file-preview__item__info {
+  font-size: 12px;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.title-text {
+  font-size: 18px;
+  font-weight: 700;
+  margin-bottom: 10px;
+}
+
+.icon-delete:hover {
+  opacity: 0.8;
+}
