@@ -118,6 +118,13 @@ function Header () {
                     </Typography>
                   </Link>
                 </MenuItem>
+                <MenuItem onClick={handleCloseUserMenu}>
+                  <Link to='/storages' style={{ textDecoration: 'null' }}>
+                    <Typography sx={{ fontSize: 14, color:'#111' }} textAlign='center'>
+                      My storages
+                    </Typography>
+                  </Link>
+                </MenuItem>
                 <MenuItem onClick={() => auth.signOut()}>
                   <Typography sx={{ fontSize: 14 }} textAlign='center'>
                     Logout

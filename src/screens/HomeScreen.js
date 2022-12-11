@@ -8,9 +8,10 @@ function HomeScreen () {
         <div className='container'>
           <div className='row'>
             <div className='col-lg-6 pt-5 pt-lg-0 order-2 order-lg-1 d-flex flex-column justify-content-center'>
-              <h1 data-aos='fade-up'>Grow your business with Vesperr</h1>
+              <h1 data-aos='fade-up'>Grow your team</h1>
               <h2 data-aos='fade-up' data-aos-delay='400'>
-                We are team of talented designers making websites with Bootstrap
+                This website supports your research and data storage using many
+                popular hosting services like Amazon, Firebase, ...
               </h2>
               <div data-aos='fade-up' data-aos-delay='800'>
                 <a href='#about' className='btn-get-started scrollto'>
@@ -109,24 +110,28 @@ function HomeScreen () {
               data-aos-delay='100'
             >
               <div class='contact-about'>
-                <h3>Vesperr</h3>
-                <p>
-                  Cras fermentum odio eu feugiat. Justo eget magna fermentum
-                  iaculis eu non diam phasellus. Scelerisque felis imperdiet
-                  proin fermentum leo. Amet volutpat consequat mauris nunc
-                  congue.
-                </p>
+                <h3>Huy Nguyen</h3>
+                <p>Python Developer</p>
                 <div class='social-links'>
-                  <a href='#' class='twitter'>
-                    <i class='bi bi-twitter'></i>
-                  </a>
-                  <a href='#' class='facebook'>
+                  <a
+                    href='https://www.facebook.com/profile.php?id=100034499171734'
+                    target='blank'
+                    class='facebook'
+                  >
                     <i class='bi bi-facebook'></i>
                   </a>
-                  <a href='#' class='instagram'>
-                    <i class='bi bi-instagram'></i>
+                  <a
+                    href='https://github.com/nguyenduchuy71?tab=repositories'
+                    target='blank'
+                    class='github'
+                  >
+                    <i class='bi bi-github'></i>
                   </a>
-                  <a href='#' class='linkedin'>
+                  <a
+                    href='https://www.linkedin.com/in/nguyen-huy-26146a14a/'
+                    target='blank'
+                    class='linkedin'
+                  >
                     <i class='bi bi-linkedin'></i>
                   </a>
                 </div>
@@ -142,18 +147,18 @@ function HomeScreen () {
                 <div>
                   <i class='ri-map-pin-line'></i>
                   <p>
-                    A108 Adam Street<br></br>New York, NY 535022
+                    Hiep Binh Chanh, Thu Duc<br></br>TP.Ho Chi Minh
                   </p>
                 </div>
 
                 <div>
                   <i class='ri-mail-send-line'></i>
-                  <p>info@example.com</p>
+                  <p>wtfomg3650@gmail.com</p>
                 </div>
 
                 <div>
                   <i class='ri-phone-line'></i>
-                  <p>+1 5589 55488 55s</p>
+                  <p>+84 349360265</p>
                 </div>
               </div>
             </div>

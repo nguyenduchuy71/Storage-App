@@ -11,6 +11,7 @@ import { auth } from './config/firebaseConfig.js'
 import Spinner from 'react-spinkit'
 import ProjectDetail from './screens/ProjectDetail'
 import ProjectScreen from './screens/ProjectScreen'
+import StorageScreen from './screens/StorageScreen'
 
 function App () {
   const [user, loading] = useAuthState(auth)
@@ -38,6 +39,7 @@ function App () {
                 <Route path='/profile' component={ProfilePage} />
                 <Route path='/project/:id' component={ProjectDetail} />
                 <Route path='/projects' component={ProjectScreen} />
+                <Route path='/storages' component={StorageScreen} />
                 <Route path='/' component={HomeScreen} exact />
               </Switch>
             </AppBody>

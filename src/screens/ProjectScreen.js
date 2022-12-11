@@ -9,6 +9,8 @@ import { Grid, Button, Box, Typography, Modal, TextField } from '@mui/material'
 import { useSelector, useDispatch } from 'react-redux'
 import { addProjectAsync } from '../features/projectSlice'
 import { useEffect } from 'react'
+import 'react-notifications/lib/notifications.css'
+import { NotificationManager, NotificationContainer } from 'react-notifications'
 
 const style = {
   position: 'absolute',
@@ -33,7 +35,7 @@ function ProjectScreen () {
   const handleClose = () => setOpen(false)
   const [projectName, setProjectName] = React.useState('')
   const [projectPassword, setProjectPassword] = React.useState('')
-  const { isLoading } = useSelector(state => state.project)
+  const { isLoading, success } = useSelector(state => state.project)
   const dispatch = useDispatch()
   const addProject = () => {
     if (projectName && projectPassword) {
@@ -44,17 +46,21 @@ function ProjectScreen () {
           user: user
         })
       )
+      success
+      ? NotificationManager.success('Add project successful.', 'Success')
+      : NotificationManager.error('Add project fail.', 'Error')
     }
   }
   useEffect(() => {
     if (!isLoading) setOpen(false)
-  }, [isLoading])
+  }, [isLoading, success])
 
   if (loading) {
     return <Loading />
   } else {
     return (
       <MainContainer>
+        <NotificationContainer />
         <ButtonContainer>
           <Button
             onClick={handleOpen}

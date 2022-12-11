@@ -21,7 +21,9 @@ export const addProjectAsync = createAsyncThunk(
       })
       .catch(error => {
         console.log(error)
+        return { status_code: 400, error: error }
       })
+    return { status_code: 200 }
   }
 )
 
@@ -42,7 +44,8 @@ export const deleteProjectAsync = createAsyncThunk(
 export const projectSlice = createSlice({
   name: 'project',
   initialState: {
-    isLoading: false
+    isLoading: false,
+    success: false
   },
   extraReducers: {
     [deleteProjectAsync.pending]: (state, action) => {
@@ -58,6 +61,7 @@ export const projectSlice = createSlice({
       state.isLoading = true
     },
     [addProjectAsync.fulfilled]: (state, action) => {
+      state.success = action.payload.status_code === 200
       state.isLoading = false
     },
     [addProjectAsync.rejected]: (state, action) => {
