@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { enterRoom } from '../features/appSlice'
+import { enterRoom, enterProjectAsync } from '../features/appSlice'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
@@ -15,6 +15,8 @@ import {
   Modal,
   TextField
 } from '@mui/material'
+import { auth } from '../config/firebaseConfig.js'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 const style = {
   position: 'absolute',
@@ -32,6 +34,7 @@ const style = {
 }
 
 function ProjectCard (props) {
+  const [user] = useAuthState(auth)
   const project = props.doc.data()
   const dispatch = useDispatch()
   const history = useHistory()
@@ -40,12 +43,17 @@ function ProjectCard (props) {
   const handleOpen = () => setOpen(true)
   const handleClose = () => setOpen(false)
 
-  const handleJoinProject = () => {
+  const handleJoinProject = async () => {
     const project_id = project.project_id
     if (project.project_pass === projectPassword) {
       dispatch(
         enterRoom({
           roomId: project_id
+        })
+      )
+      dispatch(
+        await enterProjectAsync({
+          user: user
         })
       )
       setOpen(false)
@@ -64,7 +72,12 @@ function ProjectCard (props) {
         />
         <CardActionArea>
           <CardContent>
-            <Typography sx={{textAlign: 'center'}} gutterBottom variant='h4' component='div'>
+            <Typography
+              sx={{ textAlign: 'center' }}
+              gutterBottom
+              variant='h4'
+              component='div'
+            >
               {project.project_name}
             </Typography>
           </CardContent>
@@ -72,7 +85,7 @@ function ProjectCard (props) {
         <CardActions
           sx={{
             display: 'flex',
-            justifyContent: 'center',
+            justifyContent: 'center'
           }}
         >
           <Button

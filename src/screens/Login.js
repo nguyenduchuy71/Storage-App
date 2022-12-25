@@ -3,16 +3,19 @@ import styled from 'styled-components'
 import logo from '../assets/logo.jpg'
 import gooogle_logo from '../assets/google-logo.png'
 import { auth, provider } from '../config/firebaseConfig.js'
+import { NotificationManager, NotificationContainer } from 'react-notifications'
+import 'react-notifications/lib/notifications.css'
 
 function Login () {
   const signIn = e => {
     e.preventDefault()
     auth.signInWithPopup(provider).catch(error => {
-      alert(error.message)
+      NotificationManager.error(error.message, 'Error')
     })
   }
   return (
     <LoginContainer>
+      <NotificationContainer />
       <img src={logo} alt='login_img' />
       <ButtonContainer onClick={signIn}>
         <img src={gooogle_logo} alt='google-logo' />

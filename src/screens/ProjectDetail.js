@@ -19,27 +19,18 @@ import TableHead from '@mui/material/TableHead'
 import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import '../css/drop-file-input.css'
-import { useSelector, useDispatch } from 'react-redux'
-
+import { useSelector } from 'react-redux'
 
 function ProjectDetail () {
   const [channels, loading, error] = useCollection(db.collection('project'))
   const params = useParams()
-  const [project, setProject] = useState(null)
   const [usedQuota, setUsedQuota] = useState(0)
   const [images, setImages] = useState([])
   const [status, setStatus] = useState(false)
   const [progress, setProgress] = useState(0)
-  const dispatch = useDispatch()
-  const { isLoading } = useSelector(state => state.file)
+  const { isLoading } = useSelector(state => state.app)
   const project_id = params.id
-
   useEffect(() => {
-    channels?.docs.map(doc => {
-      if (doc.data().project_id === project_id) {
-        return setProject(doc.data())
-      }
-    })
     const project_images = storage.ref().child(project_id)
     project_images
       .list()
@@ -58,7 +49,7 @@ function ProjectDetail () {
       .catch(function (error) {
         console.log(error)
       })
-  }, [loading])
+  }, [isLoading])
 
   const handleFileChange = files => {
     if (files && files.length > 0) {

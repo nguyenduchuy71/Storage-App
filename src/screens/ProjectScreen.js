@@ -47,12 +47,15 @@ function ProjectScreen () {
         })
       )
       success
-      ? NotificationManager.success('Add project successful.', 'Success')
-      : NotificationManager.error('Add project fail.', 'Error')
+        ? NotificationManager.success('Add project successful.', 'Success')
+        : NotificationManager.error('Add project fail.', 'Error')
     }
   }
   useEffect(() => {
     if (!isLoading) setOpen(false)
+    if (error) {
+      NotificationManager.error('Something wrong occured.', 'Error')
+    }
   }, [isLoading, success])
 
   if (loading) {
