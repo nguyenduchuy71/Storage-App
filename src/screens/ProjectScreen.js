@@ -37,10 +37,10 @@ function ProjectScreen () {
   const [projectPassword, setProjectPassword] = React.useState('')
   const { isLoading, success } = useSelector(state => state.project)
   const dispatch = useDispatch()
-  const addProject = () => {
+  const addProject = async () => {
     if (projectName && projectPassword) {
       dispatch(
-        addProjectAsync({
+        await addProjectAsync({
           projectName: projectName,
           projectPassword: projectPassword,
           user: user

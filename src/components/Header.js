@@ -15,7 +15,7 @@ import Container from '@mui/material/Container'
 import MenuItem from '@mui/material/MenuItem'
 import logo from '../assets/logo.jpg'
 
-const pages = ['Products', 'Pricing', 'Blog']
+const pages = []
 
 function Header () {
   const [user] = useAuthState(auth)

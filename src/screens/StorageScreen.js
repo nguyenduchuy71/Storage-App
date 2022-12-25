@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
-import Loading from '../components/Loading'
 import { auth } from '../config/firebaseConfig.js'
 import { useSelector, useDispatch } from 'react-redux'
-import { useCollection } from 'react-firebase-hooks/firestore'
 import { useAuthState } from 'react-firebase-hooks/auth'
 import Tab from 'react-bootstrap/Tab'
 import Tabs from 'react-bootstrap/Tabs'
@@ -28,11 +26,11 @@ function StorageScreen () {
   const [desc, setDesc] = useState('')
   const dispatch = useDispatch()
   const [user] = useAuthState(auth)
-  const { isLoading, success } = useSelector(state => state.storage)
+  const { success } = useSelector(state => state.storage)
 
-  const handleChangeStorage = () => {
+  const handleChangeStorage = async () => {
     dispatch(
-      addStorageAsync({
+      await addStorageAsync({
         storage_type: 'firebase',
         apiKey: apiKey,
         authDomain: authDomain,

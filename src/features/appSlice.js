@@ -4,6 +4,7 @@ export const appSlice = createSlice({
   name: "app",
   initialState: {
     roomId: null,
+    defaultStorage: {}
   },
   reducers: {
     enterRoom: (state, action) => {
