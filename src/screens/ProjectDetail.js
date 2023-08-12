@@ -180,7 +180,7 @@ function ProjectDetail () {
           </ListImageContainer>
         </LeftContainer>
         <RightContainer>
-          <FileType />
+          <FileType list_storage_image={images} />
           <p className='title-text'>Used quota</p>
           <ChartContainer>
             <Chart usedQuota={usedQuota} />
