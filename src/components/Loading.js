@@ -6,7 +6,7 @@ function Loading () {
   return (
     <AppLoading>
       <AppLoadingContents>
-        <Spinner name='ball-spin-fade-loader' color='blue' fadeIn='none' />
+        <Spinner name='ball-spin-fade-loader' color='gray' fadeIn='none' />
       </AppLoadingContents>
     </AppLoading>
   )

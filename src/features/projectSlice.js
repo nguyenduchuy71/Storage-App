@@ -18,6 +18,7 @@ export const addProjectAsync = createAsyncThunk(
       })
       .then(docRef => {
         console.log('Document written with ID: ', docRef.id)
+        return { status_code: 200 }
       })
       .catch(error => {
         console.log(error)
@@ -32,7 +33,7 @@ export const deleteProjectAsync = createAsyncThunk(
   async payload => {
     const project_query = await db
       .collection('project')
-      .where('project_id', '==', payload.id)
+      .where('project_id', '==', payload.project_id)
     project_query.get().then(function (querySnapshot) {
       querySnapshot.forEach(function (doc) {
         doc.ref.delete()

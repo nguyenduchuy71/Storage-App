@@ -14,7 +14,7 @@ function HomeScreen () {
                 popular hosting services like Amazon, Firebase, ...
               </h2>
               <div data-aos='fade-up' data-aos-delay='800'>
-                <a href='#about' className='btn-get-started scrollto'>
+                <a href='/projects' className='btn-get-started scrollto'>
                   Get Started
                 </a>
               </div>

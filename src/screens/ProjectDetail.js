@@ -138,7 +138,7 @@ function ProjectDetail () {
                 {images.length > 0 ? (
                   <TableBody>
                     {images.map(row => (
-                      <TableRow
+                       <TableRow
                         key={row.name}
                         sx={{
                           '&:last-child td, &:last-child th': { border: 0 }
@@ -148,7 +148,7 @@ function ProjectDetail () {
                           <div className='drop-file-preview__item'>
                             <img
                               src={
-                                ImageConfig[row.name.split('.')[1]] ||
+                                ImageConfig[row.name.split('.').slice(-1)] ||
                                 ImageConfig['default']
                               }
                               alt=''
@@ -172,7 +172,7 @@ function ProjectDetail () {
                           />
                         </TableCell>
                       </TableRow>
-                    ))}
+                  ))}
                   </TableBody>
                 ) : null}
               </Table>

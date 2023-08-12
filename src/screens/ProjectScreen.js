@@ -11,6 +11,7 @@ import { addProjectAsync } from '../features/projectSlice'
 import { useEffect } from 'react'
 import 'react-notifications/lib/notifications.css'
 import { NotificationManager, NotificationContainer } from 'react-notifications'
+import emptyProject from '../assets/empty.png'
 
 const style = {
   position: 'absolute',
@@ -39,16 +40,18 @@ function ProjectScreen () {
   const dispatch = useDispatch()
   const addProject = async () => {
     if (projectName && projectPassword) {
-      dispatch(
+      await dispatch(
         await addProjectAsync({
           projectName: projectName,
           projectPassword: projectPassword,
           user: user
         })
       )
-      success
+      if(!isLoading){
+        success
         ? NotificationManager.success('Add project successful.', 'Success')
         : NotificationManager.error('Add project fail.', 'Error')
+      }
     }
   }
   useEffect(() => {
@@ -56,7 +59,7 @@ function ProjectScreen () {
     if (error) {
       NotificationManager.error('Something wrong occured.', 'Error')
     }
-  }, [isLoading, success])
+  }, [isLoading, success, loading])
 
   if (loading) {
     return <Loading />
@@ -67,7 +70,7 @@ function ProjectScreen () {
         <ButtonContainer>
           <Button
             onClick={handleOpen}
-            sx={{ fontSize: 12, backgroundColor: '#02de0d' }}
+            sx={{ fontSize: 12, backgroundColor: '#09d90d' }}
             variant='contained'
             color='success'
           >
@@ -81,11 +84,14 @@ function ProjectScreen () {
               spacing={{ xs: 2, md: 3 }}
               columns={{ xs: 4, sm: 8, md: 12 }}
             >
-              {channels?.docs.map(doc => (
+              {channels?.docs?.length > 0?
+              channels?.docs.map(doc => (
                 <Grid key={doc.id} item xs={10} sm={4} md={3}>
                   <ProjectCard doc={doc} />
                 </Grid>
-              ))}
+              )): <EmptyProjectContainer>
+                  <img style={{ width: '50%', height: 'auto', borderRadius: '10px' }} src= {emptyProject} alt='empty project image' />
+                </EmptyProjectContainer>}
             </Grid>
           </Box>
         </ListCardContainer>
@@ -101,7 +107,7 @@ function ProjectScreen () {
             </Typography>
             <TextField
               required
-              sx={{ mt: 2, mb: 2 }}
+              sx={{ mt: 2, mb: 2, fontSize: 20 }}
               id='project_name'
               fullWidth
               label='Name'
@@ -116,6 +122,7 @@ function ProjectScreen () {
               fullWidth
               label='Password'
               variant='outlined'
+              type='password'
               name='project_password'
               onChange={e => setProjectPassword(e.target.value)}
             />
@@ -148,4 +155,12 @@ const ButtonContainer = styled.div`
 
 const ListCardContainer = styled.div`
   z-index: -1;
+`
+
+const EmptyProjectContainer = styled.div`
+  width: 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin-bottom: 20px;
 `
