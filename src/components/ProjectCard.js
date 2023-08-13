@@ -1,6 +1,6 @@
 import React from 'react'
 import styled from 'styled-components'
-import { enterRoom, enterProjectAsync } from '../features/appSlice'
+import { enterRoomAsync, enterProjectAsync } from '../features/appSlice'
 import { useDispatch } from 'react-redux'
 import { useHistory } from 'react-router-dom'
 import {
@@ -49,12 +49,13 @@ function ProjectCard (props) {
   const handleJoinProject = async () => {
     const project_id = project.project_id
     if (project.project_pass === projectPassword) {
-      dispatch(
-        enterRoom({
-          roomId: project_id
+      await dispatch(
+        await enterRoomAsync({
+          roomId: project_id,
+          user: user
         })
       )
-      dispatch(
+      await dispatch(
         await enterProjectAsync({
           user: user
         })
@@ -84,7 +85,7 @@ function ProjectCard (props) {
         <CardActionArea>
           <CardContent>
             <Typography
-              sx={{ textAlign: 'center' }}
+              sx={{ textAlign: 'center', cursor: 'default' }}
               gutterBottom
               variant='h4'
               component='div'
@@ -100,15 +101,18 @@ function ProjectCard (props) {
               alignItems: 'center'
             }}>
           <Button
-            sx={{ fontSize: 12, display: 'inline' }}
+            sx={{ display: 'flex', 
+              justifyContent: 'center', 
+              alignItems: 'center' }}
             variant='contained'
             onClick={handleOpen}
           >
             <InputIcon sx={{ fontSize: 24 }} />
           </Button>
           <Button
-            sx={{ fontSize: 12,
-              display: 'inline'}}
+              sx={{ display: 'flex', 
+                justifyContent: 'center',
+                alignItems: 'center' }}
               variant='contained'
               onClick={handleDeleteProject}
               color="error"

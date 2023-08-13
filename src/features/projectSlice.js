@@ -14,14 +14,14 @@ export const addProjectAsync = createAsyncThunk(
         project_pass: payload.projectPassword,
         user_id: payload.user?.uid,
         user_name: payload.user?.displayName,
-        user_img: payload.user?.photoURL
+        user_img: payload.user?.photoURL,
+        author_accounts: []
       })
       .then(docRef => {
         console.log('Document written with ID: ', docRef.id)
         return { status_code: 200 }
       })
       .catch(error => {
-        console.log(error)
         return { status_code: 400, error: error }
       })
     return { status_code: 200 }

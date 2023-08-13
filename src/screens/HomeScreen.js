@@ -234,7 +234,5 @@ function HomeScreen () {
 
 export default HomeScreen
 const HomeScreenContainer = styled.div`
-  margin-top: 100px;
   width: 100%;
-  height: 100vh;
 `

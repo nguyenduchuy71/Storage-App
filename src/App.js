@@ -12,6 +12,8 @@ import Spinner from 'react-spinkit'
 import ProjectDetail from './screens/ProjectDetail'
 import ProjectScreen from './screens/ProjectScreen'
 import StorageScreen from './screens/StorageScreen'
+import NotFoundScreen from './screens/NotFoundScreen'
+import ForbiddenScreen from './screens/ForbiddenScreen'
 
 function App () {
   const [user, loading] = useAuthState(auth)
@@ -40,7 +42,9 @@ function App () {
                 <Route path='/project/:id' component={ProjectDetail} />
                 <Route path='/projects' component={ProjectScreen} />
                 <Route path='/storages' component={StorageScreen} />
+                <Route path='/forbidden' component={ForbiddenScreen} />
                 <Route path='/' component={HomeScreen} exact />
+                <Route path='*' component={NotFoundScreen} />
               </Switch>
             </AppBody>
           </>
@@ -54,6 +58,7 @@ export default App
 
 const AppBody = styled.div`
   display: flex;
+  width: 100%;
   height: 100vh;
 `
 const AppLoading = styled.div`

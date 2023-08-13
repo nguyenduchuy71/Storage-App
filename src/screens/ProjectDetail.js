@@ -1,8 +1,8 @@
 import React, { useEffect, useState } from 'react'
 import styled from 'styled-components'
 import { useCollection } from 'react-firebase-hooks/firestore'
-import { db, storage } from '../config/firebaseConfig'
-import { useParams } from 'react-router-dom'
+import { db, storage, auth } from '../config/firebaseConfig'
+import { useParams, useHistory } from 'react-router-dom'
 import DropFileInput from '../components/DropFileInput'
 import Loading from '../components/Loading'
 import Chart from '../components/Chart'
@@ -20,8 +20,10 @@ import TableRow from '@mui/material/TableRow'
 import Paper from '@mui/material/Paper'
 import '../css/drop-file-input.css'
 import { useSelector } from 'react-redux'
+import { useAuthState } from 'react-firebase-hooks/auth'
 
 function ProjectDetail () {
+  const [user] = useAuthState(auth)
   const [channels, loading, error] = useCollection(db.collection('project'))
   const params = useParams()
   const [usedQuota, setUsedQuota] = useState(0)
@@ -29,7 +31,20 @@ function ProjectDetail () {
   const [status, setStatus] = useState(false)
   const [progress, setProgress] = useState(0)
   const { isLoading } = useSelector(state => state.app)
+  const history = useHistory()
   const project_id = params.id
+  
+  useEffect(() => {
+    channels?.forEach(channel => {
+      if (channel.data().project_id === project_id) {
+        const author_accounts = channel.data().author_accounts
+        if(!author_accounts.includes(user.uid)) {
+          history.push(`/forbidden`)
+        }
+      }
+    });
+  }, [loading])
+
   useEffect(() => {
     const project_images = storage.ref().child(project_id)
     project_images
@@ -39,7 +54,7 @@ function ProjectDetail () {
         let total_used_quota = 0
         result.items.forEach(imageRef => {
           imageRef.getMetadata().then(metadata => {
-            total_used_quota = total_used_quota + metadata.size
+            total_used_quota += metadata.size
             list_storage_image = [...list_storage_image, metadata]
             setImages(list_storage_image)
             setUsedQuota(total_used_quota)
@@ -50,7 +65,7 @@ function ProjectDetail () {
         console.log(error)
       })
   }, [isLoading])
-
+  
   const handleFileChange = files => {
     if (files && files.length > 0) {
       setStatus(true)

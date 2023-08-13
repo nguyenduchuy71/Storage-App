@@ -90,7 +90,9 @@ function ProjectScreen () {
                   <ProjectCard doc={doc} />
                 </Grid>
               )): <EmptyProjectContainer>
-                  <img style={{ width: '50%', height: 'auto', borderRadius: '10px' }} src= {emptyProject} alt='empty project image' />
+                  <img style={{ width: '60%',
+                    borderRadius: '10px' }} 
+                    src= {emptyProject} alt='empty project image' />
                 </EmptyProjectContainer>}
             </Grid>
           </Box>

@@ -1,10 +1,11 @@
 import { createAsyncThunk, createSlice } from '@reduxjs/toolkit'
 import { db } from '../config/firebaseConfig.js'
+import { doc, updateDoc } from "firebase/firestore"
 
 export const enterProjectAsync = createAsyncThunk(
   'app/enterProjectAsync',
   async payload => {
-    let ref = db.collection('storage')
+    const ref = db.collection('storage')
     const snapshot = await ref.get()
     let data = []
     snapshot.forEach(doc => {
@@ -16,6 +17,29 @@ export const enterProjectAsync = createAsyncThunk(
   }
 )
 
+export const enterRoomAsync = createAsyncThunk(
+  'app/enterRoomAsync',
+  async payload => {
+    const roomId = payload.roomId
+    const ref = db.collection('project')
+    const snapshot = await ref.get()
+    const user_id = payload.user?.uid
+    snapshot.forEach(async (docData) => {
+      const data = docData.data()
+      if(data?.project_id == roomId){
+        const docRef = doc(db, "project", docData.id);
+        const author_accounts = data?.author_accounts
+        author_accounts.push(user_id)
+        await updateDoc(docRef, {
+          author_accounts: author_accounts
+        });
+      }
+    })
+    return roomId
+  }
+)
+
+
 export const appSlice = createSlice({
   name: 'app',
   initialState: {
@@ -24,9 +48,6 @@ export const appSlice = createSlice({
     defaultStorage: {}
   },
   reducers: {
-    enterRoom: (state, action) => {
-      state.roomId = action.payload.roomId
-    }
   },
   extraReducers: {
     [enterProjectAsync.pending]: (state, action) => {
@@ -38,11 +59,19 @@ export const appSlice = createSlice({
     },
     [enterProjectAsync.rejected]: (state, action) => {
       state.isLoading = false
+    },
+    [enterRoomAsync.pending]: (state, action) => {
+      state.isLoading = true
+    },
+    [enterRoomAsync.fulfilled]: (state, action) => {
+      state.roomId = action.payload
+      state.isLoading = false
+    },
+    [enterRoomAsync.rejected]: (state, action) => {
+      state.isLoading = false
     }
   }
 })
-
-export const { enterRoom } = appSlice.actions
 
 export const selectRoomId = state => state.app.roomId
 
