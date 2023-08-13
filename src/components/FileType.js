@@ -22,7 +22,7 @@ function FileType ({list_storage_image}) {
       video: 0,
       other: 0,
     }
-    list_storage_image.map((image) => {
+    list_storage_image = list_storage_image.map((image) => {
       if(image?.name.toLowerCase().match("^.*\.(jpg|png|jpeg|gif)$")){
         objectFileType.image += image?.size
       }
@@ -35,6 +35,7 @@ function FileType ({list_storage_image}) {
       else{
         objectFileType.other += image?.size
       }
+      return list_storage_image
     });
     setFileType(objectFileType)
   }

@@ -26,7 +26,7 @@ export const enterRoomAsync = createAsyncThunk(
     const user_id = payload.user?.uid
     snapshot.forEach(async (docData) => {
       const data = docData.data()
-      if(data?.project_id == roomId){
+      if(data?.project_id === roomId){
         const docRef = doc(db, "project", docData.id);
         const author_accounts = data?.author_accounts
         author_accounts.push(user_id)

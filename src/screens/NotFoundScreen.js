@@ -5,7 +5,8 @@ import styled from 'styled-components'
 function NotFoundScreen() {
   return (
     <NotFoundScreenContainer>
-        <img style={{objectFit: 'cover', width: '50%'}} src={notFoundImage} alt='not found image' />
+        <image style={{objectFit: 'cover', width: '50%'}} 
+          src={notFoundImage} alt='not found image' />
     </NotFoundScreenContainer>
   )
 }

@@ -5,7 +5,7 @@ import styled from 'styled-components'
 function ForbiddenScreen() {
   return (
     <ForbiddenScreenContainer>
-        <img style={{objectFit: 'contain', width: '50%'}} src={forbiddenImage} alt='forbidden image' />
+        <image style={{objectFit: 'contain', width: '50%'}} src={forbiddenImage} alt='forbidden image' />
     </ForbiddenScreenContainer>
   )
 }
