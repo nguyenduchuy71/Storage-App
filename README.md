@@ -1,46 +1,50 @@
-# Getting Started with Create React App and Redux
+# Storage Project
 
-This project was bootstrapped with [Create React App](https://github.com/facebook/create-react-app), using the [Redux](https://redux.js.org/) and [Redux Toolkit](https://redux-toolkit.js.org/) template.
+## Overview
 
-## Available Scripts
+Storage is a platform for users to create projects which allows users who join to the projects for to upload and sharee files between contributes. This README provides an overview of the project's architecture, including the technologies used and instructions for setting up the development environment.
 
-In the project directory, you can run:
+## Installation
 
-### `npm start`
+To get started with the project, follow these steps:
 
-Runs the app in the development mode.\
-Open [http://localhost:3000](http://localhost:3000) to view it in your browser.
+1. Clone the repository:
+    ```sh
+    git clone https://github.com/nguyenduchuy71/Storage-App
+    ```
+2. Install dependencies:
+    ```sh
+    npm install
+    ```
 
-The page will reload when you make changes.\
-You may also see any lint errors in the console.
+## Usage
 
-### `npm test`
+To start the development server, run:
+```sh
+npm start
+```
 
-Launches the test runner in the interactive watch mode.\
-See the section about [running tests](https://facebook.github.io/create-react-app/docs/running-tests) for more information.
+## Features
 
-### `npm run build`
+- **User Authentication**: Secure user authentication ensures that only registered users can upload files by using the Firebase Authentication.
+- **Responsive Design**: The application is styled with Bootstrap to ensure it looks great on all devices, from mobile phones to desktops.
+- **State Management**: Redux Toolkit is used for efficient state management, ensuring smooth interaction and real-time updates across the application.
+- **Firebase Storage**: Uploaded files are securely stored in Firebase Storage, leveraging its robust and scalable infrastructure.
 
-Builds the app for production to the `build` folder.\
-It correctly bundles React in production mode and optimizes the build for the best performance.
 
-The build is minified and the filenames include the hashes.\
-Your app is ready to be deployed!
+## Technologies Used
 
-See the section about [deployment](https://facebook.github.io/create-react-app/docs/deployment) for more information.
+### ReactJS
 
-### `npm run eject`
+[ReactJS](https://reactjs.org/) is a popular JavaScript library for building user interfaces. It allows developers to create large web applications that can update and render efficiently in response to data changes. React's component-based architecture makes it easy to build reusable UI components.
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
+### Bootstrap
 
-If you aren't satisfied with the build tool and configuration choices, you can `eject` at any time. This command will remove the single build dependency from your project.
+[Bootstrap](https://getbootstrap.com/) Bootstrap utilizes Sass for a modular and customizable architecture. Import only the components you need, enable global options like gradients and shadows, and write your own CSS with our variables, maps, functions, and mixins.
 
-Instead, it will copy all the configuration files and the transitive dependencies (webpack, Babel, ESLint, etc) right into your project so you have full control over them. All of the commands except `eject` will still work, but they will point to the copied scripts so you can tweak them. At this point you're on your own.
+### Redux Toolkit
 
-You don't have to ever use `eject`. The curated feature set is suitable for small and middle deployments, and you shouldn't feel obligated to use this feature. However we understand that this tool wouldn't be useful if you couldn't customize it when you are ready for it.
+[Redux Toolkit](https://redux-toolkit.js.org/introduction/getting-started) (also known as "RTK" for short) is our official recommended approach for writing Redux logic. The @reduxjs/toolkit package wraps around the core redux package, and contains API methods and common dependencies that we think are essential for building a Redux app. Redux Toolkit builds in our suggested best practices, simplifies most Redux tasks, prevents common mistakes, and makes it easier to write Redux applications.
+### Firebase Storage
 
-## Learn More
-
-You can learn more in the [Create React App documentation](https://facebook.github.io/create-react-app/docs/getting-started).
-
-To learn React, check out the [React documentation](https://reactjs.org/).
+[Firebase Storage](https://firebase.google.com/products/storage) provides secure file uploads and downloads for Firebase apps. It is backed by Google Cloud Storage and offers robust and scalable object storage solutions. Firebase Storage is easy to integrate with other Firebase services and provides a simple and efficient way to handle user-generated content, such as photos and videos.
